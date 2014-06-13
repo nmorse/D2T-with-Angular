@@ -1,31 +1,23 @@
 <!doctype html>
-<html ng-app="syllabusApp">
+<html ng-app="formangleApp">
   <head>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular-resource.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular-sanitize.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
     
-    <script src="angular-local-storage.js"></script>
+    <!-- script src="angular-local-storage.js"></script -->
     <!-- script src="angular-drop.min.js"></script -->
   
 	<!-- syllabi_ctrl.js is the main controler for this AngularJS Application -->
-    <script src="syllabi_ctrl.js"></script>
+    <script src="js/formangular_ctrl.js"></script>
 
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="bootstrap/js/bootstrap.min.js"></script>
-
-	<!-- CKeditor uses JQuery selectors -->
-	<script src="ckeditor/ckeditor.js"></script>
-	<script src="ckeditor/adapters/jquery.js"></script>
-
-	<!-- Bootstrap Latest compiled and minified CSS
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-	 -->
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-
-	<!-- Optional theme (plain) -->
-	<link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 
 	<style>
 	body {
@@ -59,6 +51,8 @@
 
   </head>
   <body>
-    <div ng-view></div>
+      <h1>ForMAngLe</h1>
+      <div ng-view>test</div>
+    <div data-ng-include data-src="current_template"></div>
   </body>
 </html>
