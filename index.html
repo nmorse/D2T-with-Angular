@@ -1,0 +1,64 @@
+<!doctype html>
+<html ng-app="syllabusApp">
+  <head>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular-resource.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular-sanitize.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
+    
+    <script src="angular-local-storage.js"></script>
+    <!-- script src="angular-drop.min.js"></script -->
+  
+	<!-- syllabi_ctrl.js is the main controler for this AngularJS Application -->
+    <script src="syllabi_ctrl.js"></script>
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="bootstrap/js/bootstrap.min.js"></script>
+
+	<!-- CKeditor uses JQuery selectors -->
+	<script src="ckeditor/ckeditor.js"></script>
+	<script src="ckeditor/adapters/jquery.js"></script>
+
+	<!-- Bootstrap Latest compiled and minified CSS
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+	 -->
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+
+	<!-- Optional theme (plain) -->
+	<link rel="stylesheet" href="bootstrap/css/bootstrap-theme.min.css">
+
+	<style>
+	body {
+		margin: 1.0em;
+	}
+	.nav {
+		margin-bottom: 0;
+		padding-left: 12px;
+		list-style: none;
+	}
+	.nav>li>a {
+		padding: 1px 0px;
+	}
+	.dropdown-menu {
+		min-width: 100px;
+	}
+	.panel {
+		margin-bottom: 10px;
+	}
+	.panel-heading {
+		padding: 2px 6px;
+	}
+	.editable {
+		height:100%
+	}
+	table,th,td
+	{
+		border:1px solid silver;
+	}
+	</style>
+
+  </head>
+  <body>
+    <div ng-view></div>
+  </body>
+</html>
