@@ -1,58 +1,22 @@
-<!doctype html>
-<html ng-app="formangleApp">
-  <head>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
-
+<!DOCTYPE HTML>
+<html ng-app="myApp">
+<head>
+    <title>AngularJS Dynamic Template</title>
+    
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular-resource.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular-sanitize.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
+    <script type="text/javascript" src="js2/app.js"></script>
     
-    <!-- script src="angular-local-storage.js"></script -->
-    <!-- script src="angular-drop.min.js"></script -->
-  
-	<!-- syllabi_ctrl.js is the main controler for this AngularJS Application -->
-    <script src="js/formangular_ctrl.js"></script>
+    <!-- link rel="stylesheet" href="css/layout.css" -->
+    
+</head>
+<body>
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<div id="container" ng-controller="ViewCtrl">
+    <for-mangle ng-repeat="item in content" content="item"></for-mangle>
+</div>
 
-	<style>
-	body {
-		margin: 1.0em;
-	}
-	.nav {
-		margin-bottom: 0;
-		padding-left: 12px;
-		list-style: none;
-	}
-	.nav>li>a {
-		padding: 1px 0px;
-	}
-	.dropdown-menu {
-		min-width: 100px;
-	}
-	.panel {
-		margin-bottom: 10px;
-	}
-	.panel-heading {
-		padding: 2px 6px;
-	}
-	.editable {
-		height:100%
-	}
-	table,th,td
-	{
-		border:1px solid silver;
-	}
-	</style>
-
-  </head>
-  <body>
-      <h1>ForMAngLe</h1>
-      <div ng-view>test</div>
-    <div data-ng-include data-src="current_template"></div>
-  </body>
+</body>
 </html>
