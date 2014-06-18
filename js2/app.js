@@ -1,7 +1,7 @@
 var app = angular.module('myApp', []);
 
 app.directive('viewItem', function ($compile) {
-    var radioSetTemplate = '<div class="entry-photo"><span>{{content.title}}"</span></div>';
+    var radioSetTemplate = '<div class="entry-photo"><span>{{content.title}}"</span><div ng-repeat="item in content.data" content="item">{{item.name}}</div></div>';
     var textareaTemplate = '<div class="entry-video">{{content.data}}</div>';
     var textTemplate = '<div class="entry-note"><h2>{{content.title}}</h2>{{content.data}}</div>';
 
