@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html ng-app="myApp">
+<head>
+    <title>AngularJS Dynamic Template</title>
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular-resource.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular-sanitize.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
+    <script type="text/javascript" src="js2/app.js"></script>
+    
+    <!-- link rel="stylesheet" href="css/layout.css" -->
+    
+</head>
+<body>
+
+<div id="container" ng-controller="ViewCtrl">
+    <view-item ng-repeat="item in content" content="item"></view-item>
+</div>
+
+</body>
+</html>
