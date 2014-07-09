@@ -13,7 +13,7 @@ var app = angular.module('myApp', []);
 app.directive('forMangle', function ($compile) {
     var radioSetTemplate = '<div class="mangle-radioset"><h4 ng-bind="content.title"></h4><span ng-repeat="item in content.data" content="item" > <input type="radio" name="{{content.title}}" value="{{item.name}}" /> {{item.name}}</span></div></div>';
     var textareaTemplate = '<div class="mangle-textarea">{{content.data}}</div>';
-    var metaTemplate = '<div class="mangle-meta-test">{{content.title}}<for-mangle ng-repeat="item in content.data" content="item"></for-mangle></div>';
+    var metaTemplate = '<div><div  sortable >{{content.title}}<div for-mangle ng-repeat="item in content.data" content="item"></div></div></div>';
     var textTemplate = '<div class="mangle-text"><h2>{{content.title}}</h2>{{content.data}}</div>';
 
     var getTemplate = function(viewType) {
@@ -41,7 +41,7 @@ app.directive('forMangle', function ($compile) {
     }
 
     return {
-        restrict: "E",
+        restrict: "A",
         replace: true,
         link: linker,
         scope: {
@@ -50,12 +50,29 @@ app.directive('forMangle', function ($compile) {
     };
 });
 
+app.directive('sortable', function() {
+    return {
+        // A = attribute, E = Element, C = Class and M = HTML Comment
+        restrict:'A',
+        link: function(scope, element, attrs) {
+            $(element).sortable();
+            $(element).disableSelection();
+        }
+    };
+});
+
+
 function ViewCtrl($scope, $http) {
     "use strict";
     $scope.content = [
         {"view_type": "radio set", "title": "Radio ABC"   , "data" : [{"name":"A"}, {"name":"B", "selected":true}, {"name":"C"}]},
         {"view_type": "textarea" , "title": "Big Text Area", "data" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pulvinar pretium felis. Vivamus nibh felis, condimentum sit amet laoreet luctus, posuere auctor lorem. Nullam malesuada."},
-        {"view_type": "meta" , "title": "Meta", "data" : [{"view_type": "radio set", "title": "Radio CDF"   , "data" : [{"name":"C"}, {"name":"D", "selected":true}, {"name":"F"}]}, {"view_type": "text"     , "title": "Inner Notes 000"   , "data" : "dolor sit amet"}]},
+        {"view_type": "meta" , "title": "Meta", "data" : [
+            {"view_type": "radio set", "title": "Radio CDF"   , "data" : [{"name":"C"}, {"name":"D", "selected":true}, {"name":"F"}]}, 
+            {"view_type": "text"     , "title": "Inner Notes 000"   , "data" : "dolor sit amet"},
+            {"view_type": "text"     , "title": "Inner Notes 001"   , "data" : "dolor sit amet"},
+            {"view_type": "text"     , "title": "Inner Notes 010"   , "data" : "dolor sit amet"}
+        ]},
         {"view_type": "text"     , "title": "Notes in Plain text"   , "data" : "Lorem ipsum"},
     ];
 }
