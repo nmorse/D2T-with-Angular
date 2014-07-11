@@ -13,7 +13,8 @@ var app = angular.module('myApp', []);
 app.directive('forMangle', function ($compile) {
     var radioSetTemplate = '<div class="mangle-radioset"><h4 ng-bind="content.title"></h4><span ng-repeat="item in content.data" content="item" > <input type="radio" name="{{content.title}}" value="{{item.name}}" /> {{item.name}}</span></div></div>';
     var textareaTemplate = '<div class="mangle-textarea">{{content.data}}</div>';
-    var metaTemplate = '<div><div  sortable >{{content.title}}<div for-mangle ng-repeat="item in content.data" content="item"></div></div></div>';
+    var metaTemplate = '<ul><div  sortable >{{content.title}}<div for-mangle ng-repeat="item in content.data" content="item"></div></div></ul>';
+    var tableTemplate = '<table><tbody  sortable ><tr ng-repeat="row in content.data" ><td ng-repeat="cell in row" >{{cell}}</td></tr></tbody></table>';
     var textTemplate = '<div class="mangle-text"><h2>{{content.title}}</h2>{{content.data}}</div>';
 
     var getTemplate = function(viewType) {
@@ -24,6 +25,9 @@ app.directive('forMangle', function ($compile) {
                 break;
             case 'textarea':
                 template = textareaTemplate;
+                break;
+            case 'table':
+                template = tableTemplate;
                 break;
             case 'meta':
                 template = metaTemplate;
@@ -67,6 +71,8 @@ function ViewCtrl($scope, $http) {
     $scope.content = [
         {"view_type": "radio set", "title": "Radio ABC"   , "data" : [{"name":"A"}, {"name":"B", "selected":true}, {"name":"C"}]},
         {"view_type": "textarea" , "title": "Big Text Area", "data" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pulvinar pretium felis. Vivamus nibh felis, condimentum sit amet laoreet luctus, posuere auctor lorem. Nullam malesuada."},
+        {"view_type": "table" , "title": "table", "data" : [[1, 2, 3], [4, 5, 6], [7, 8, 9]
+        ]},
         {"view_type": "meta" , "title": "Meta", "data" : [
             {"view_type": "radio set", "title": "Radio CDF"   , "data" : [{"name":"C"}, {"name":"D", "selected":true}, {"name":"F"}]}, 
             {"view_type": "text"     , "title": "Inner Notes 000"   , "data" : "dolor sit amet"},
