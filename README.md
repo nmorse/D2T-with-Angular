@@ -1,7 +1,7 @@
 formangular
 ===========
 
-Data driving angular to make custom views
+Data driving angular to make custom views (http://nmorse.github.io/formangular/)
 
 Dynamic Templates are useful when data drives the view.
 
