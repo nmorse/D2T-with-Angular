@@ -3,14 +3,15 @@
 <head>
     <title>AngularJS Dynamic Template and Drag-n-Drop</title>
     
-    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/themes/smoothness/jquery-ui.css" />
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/themes/smoothness/jquery-ui.css" />
+    <link rel="stylesheet" href="../styles/demo2.css" />
     
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular-resource.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular-sanitize.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
     
-    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/jquery-ui.min.js"></script>
     <script type="text/javascript" src="js2/app.js"></script>
     
     <!-- link rel="stylesheet" href="css/layout.css" -->
@@ -20,13 +21,6 @@
 
 <div  sortable id="container" ng-controller="ViewCtrl">
     <div for-mangle ng-repeat="item in content" content="item"></div>
-</div>
-
-<div sortable >
-    <div>one</div>
-    <div>two</div>
-    <div>three</div>
-    <div>four</div>
 </div>
 
 </body>
