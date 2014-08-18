@@ -2,6 +2,10 @@ body>div {
   width: 300px;
 }
 
+table {
+  border-collapse: collapse;
+}
+
 .ui-sortable>div {
   border: solid silver 1px;
   margin: 1px;
@@ -10,5 +14,5 @@ body>div {
 
 .ui-sortable>tr>td {
   border: solid silver 1px;
-  padding: 3px;
+  padding: 1px 5px 1px 5px;
 }
