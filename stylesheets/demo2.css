@@ -4,6 +4,6 @@ body>div {
 
 .ui-sortable>* {
   border: solid silver 1px;
-  border: 1px;
+  margin: 1px;
   padding: 1px;
 }
