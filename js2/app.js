@@ -58,27 +58,26 @@ app.directive('forMangle', function ($compile) {
 });
 
 app.directive('sortable', function() {
-    var ctrl_scope;
-    var save_scope = function(scope) {
-        ctrl_scope = scope;
-    };
-    var dragStart = function(e, ui) {
-        ui.item.data('start', ui.item.index());
-    };
-    var dragEnd = function(e, ui) {
-        var start = ui.item.data('start'),
-            end = ui.item.index();
-        
-        ctrl_scope.content.splice(end, 0, 
-           ctrl_scope.content.splice(start, 1)[0]);
-        
-        ctrl_scope.$apply();
-    };
-    
     return {
         // A = attribute, E = Element, C = Class and M = HTML Comment
         restrict:'A',
         link: function(scope, element, attrs) {
+            var ctrl_scope;
+            var save_scope = function(scope) {
+                ctrl_scope = scope;
+            };
+            var dragStart = function(e, ui) {
+                ui.item.data('start', ui.item.index());
+            };
+            var dragEnd = function(e, ui) {
+                var start = ui.item.data('start'),
+                    end = ui.item.index();
+                alert(start + " " + end);
+                ctrl_scope.content.data.splice(end, 0, 
+                   ctrl_scope.content.data.splice(start, 1)[0]);
+
+                ctrl_scope.$apply();
+            };
             save_scope(scope);
             $(element).sortable({
                 start: dragStart,
