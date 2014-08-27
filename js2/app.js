@@ -73,9 +73,6 @@ app.directive('sortable', function() {
     return {
         // A = attribute, E = Element, C = Class and M = HTML Comment
         restrict:'A',
-        scope: {
-          content: '='
-        },
         link: function(scope, element, attrs) {
             $(element).sortable({
                 start: dragStart,
