@@ -99,4 +99,7 @@ function ViewCtrl($scope, $http) {
         ]},
         {"view_type": "text"     , "title": "Notes in Plain text"   , "data" : "Lorem ipsum"},
     ];
+    $scope.stringify_content = function () {
+        return JSON.stringify($scope.content, null, ' ');
+    };
 }
