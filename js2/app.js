@@ -64,10 +64,10 @@ app.directive('sortable', function() {
         var start = ui.item.data('start'),
             end = ui.item.index();
         
-        $parent.content.splice(end, 0, 
-            $parent.content.splice(start, 1)[0]);
+        ui.$scope.content.splice(end, 0, 
+            ui.$scope.content.splice(start, 1)[0]);
         
-        $parent.$apply();
+        ui.$scope.$apply();
     };
     
     return {
