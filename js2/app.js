@@ -64,15 +64,18 @@ app.directive('sortable', function() {
         var start = ui.item.data('start'),
             end = ui.item.index();
         
-        ui.$scope.content.splice(end, 0, 
-            ui.$scope.content.splice(start, 1)[0]);
+        $scope.content.splice(end, 0, 
+            $scope.content.splice(start, 1)[0]);
         
-        ui.$scope.$apply();
+        $scope.$apply();
     };
     
     return {
         // A = attribute, E = Element, C = Class and M = HTML Comment
         restrict:'A',
+        scope: {
+          content: '='
+        },
         link: function(scope, element, attrs) {
             $(element).sortable({
                 start: dragStart,
