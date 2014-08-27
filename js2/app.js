@@ -4,6 +4,8 @@
 // look into loading templates via https://github.com/requirejs/text
 // or https://npmjs.org/package/grunt-angular-templates per (simpulton September 7, 2013 at 12:52 pm)
 //
+// helpful in figuring out the coordination of model and view for sortable was http://jsfiddle.net/dj_straycat/Q5FWt/3/
+//
 // TBD: test inclusion of drag and drop into the mix with dynamic(you name it) templates
 //      also ckangular inclusion just to make sure binding happens to the right data inside nested dynamic-templates
 //
@@ -55,11 +57,32 @@ app.directive('forMangle', function ($compile) {
 });
 
 app.directive('sortable', function() {
+    $scope.dragStart = function(e, ui) {
+        ui.item.data('start', ui.item.index());
+    }
+    $scope.dragEnd = function(e, ui) {
+        var start = ui.item.data('start'),
+            end = ui.item.index();
+        
+        $scope.sortableArray.splice(end, 0, 
+            $scope.sortableArray.splice(start, 1)[0]);
+        
+        $scope.$apply();
+    }
+        
+    sortableEle = $('#sortable').sortable({
+        start: $scope.dragStart,
+        update: $scope.dragEnd
+    });
+
     return {
         // A = attribute, E = Element, C = Class and M = HTML Comment
         restrict:'A',
         link: function(scope, element, attrs) {
-            $(element).sortable();
+            $(element).sortable({
+                start: $scope.dragStart,
+                update: $scope.dragEnd
+            });
             $(element).disableSelection();
         }
     };
