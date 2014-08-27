@@ -58,6 +58,10 @@ app.directive('forMangle', function ($compile) {
 });
 
 app.directive('sortable', function() {
+    var ctrl_scope;
+    var save_scope = function(scope) {
+        ctrl_scope = scope;
+    };
     var dragStart = function(e, ui) {
         ui.item.data('start', ui.item.index());
     };
@@ -75,7 +79,7 @@ app.directive('sortable', function() {
         // A = attribute, E = Element, C = Class and M = HTML Comment
         restrict:'A',
         link: function(scope, element, attrs) {
-            var ctrl_scope = scope;
+            save_scope(scope);
             $(element).sortable({
                 start: dragStart,
                 update: dragEnd
