@@ -5,6 +5,7 @@
 // or https://npmjs.org/package/grunt-angular-templates per (simpulton September 7, 2013 at 12:52 pm)
 //
 // helpful in figuring out the coordination of model and view for sortable was http://jsfiddle.net/dj_straycat/Q5FWt/3/
+// but also this is needed to show how to get data back to the content after drag&drop is done http://plnkr.co/edit/Bk2Q08hTgtgePXhxzlFr
 //
 // TBD: test inclusion of drag and drop into the mix with dynamic(you name it) templates
 //      also ckangular inclusion just to make sure binding happens to the right data inside nested dynamic-templates
@@ -64,16 +65,17 @@ app.directive('sortable', function() {
         var start = ui.item.data('start'),
             end = ui.item.index();
         
-        $scope.content.splice(end, 0, 
-            $scope.content.splice(start, 1)[0]);
+        ctrl_scope.content.splice(end, 0, 
+           ctrl_scope.content.splice(start, 1)[0]);
         
-        $scope.$apply();
+        ctrl_scope.$apply();
     };
     
     return {
         // A = attribute, E = Element, C = Class and M = HTML Comment
         restrict:'A',
         link: function(scope, element, attrs) {
+            var ctrl_scope = scope;
             $(element).sortable({
                 start: dragStart,
                 update: dragEnd
