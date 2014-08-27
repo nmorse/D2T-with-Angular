@@ -102,4 +102,7 @@ function ViewCtrl($scope, $http) {
     $scope.stringify_content = function () {
         return JSON.stringify($scope.content, null, ' ');
     };
+    $scope.add_content = function () {
+        $scope.content.unshift( {"view_type": "radio set", "title": "Radio XYZ"   , "data" : [{"name":"X"}, {"name":"Y"}, {"name":"Z"}]});
+    };
 }
