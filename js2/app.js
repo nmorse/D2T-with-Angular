@@ -39,12 +39,12 @@ app.directive('forMangle', function ($compile) {
                 break;
         }
         return template;
-    }
+    };
 
     var linker = function(scope, element, attrs) {
         element.html(getTemplate(scope.content.view_type));
         $compile(element.contents())(scope);
-    }
+    };
 
     return {
         restrict: "A",
@@ -57,31 +57,26 @@ app.directive('forMangle', function ($compile) {
 });
 
 app.directive('sortable', function() {
-    $scope.dragStart = function(e, ui) {
+    var dragStart = function(e, ui) {
         ui.item.data('start', ui.item.index());
-    }
-    $scope.dragEnd = function(e, ui) {
+    };
+    var dragEnd = function(e, ui) {
         var start = ui.item.data('start'),
             end = ui.item.index();
         
-        $scope.sortableArray.splice(end, 0, 
-            $scope.sortableArray.splice(start, 1)[0]);
+        $parent.content.splice(end, 0, 
+            $parent.content.splice(start, 1)[0]);
         
-        $scope.$apply();
-    }
-        
-    sortableEle = $('#sortable').sortable({
-        start: $scope.dragStart,
-        update: $scope.dragEnd
-    });
-
+        $parent.$apply();
+    };
+    
     return {
         // A = attribute, E = Element, C = Class and M = HTML Comment
         restrict:'A',
         link: function(scope, element, attrs) {
             $(element).sortable({
-                start: $scope.dragStart,
-                update: $scope.dragEnd
+                start: dragStart,
+                update: dragEnd
             });
             $(element).disableSelection();
         }
