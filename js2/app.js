@@ -52,7 +52,7 @@ app.directive('forMangle', function ($compile) {
         replace: true,
         link: linker,
         scope: {
-            content:'=data'
+            content:'='
         }
     };
 });
@@ -64,8 +64,15 @@ app.directive('sortable', function() {
         link: function(scope, element, attrs) {
             (function() {
                 var ctrl_scope;
+                var sort_array;
                 var save_scope = function(scope) {
                     ctrl_scope = scope;
+					if (angular.isArray(scope.content)) {
+						sort_array = scope.content;
+					}
+					else {
+						sort_array = scope.content.data;
+					}
                 };
                 var dragStart = function(e, ui) {
                     ui.item.data('start', ui.item.index());
@@ -74,8 +81,8 @@ app.directive('sortable', function() {
                     var start = ui.item.data('start'),
                         end = ui.item.index();
                     alert(start + " " + end);
-                    ctrl_scope.content.data.splice(end, 0, 
-                       ctrl_scope.content.data.splice(start, 1)[0]);
+                    sort_array.splice(end, 0, 
+                       sort_array.splice(start, 1)[0]);
     
                     ctrl_scope.$apply();
                 };
@@ -85,7 +92,7 @@ app.directive('sortable', function() {
                     update: dragEnd
                 });
                 $(element).disableSelection();
-            } ())
+            })()
         }
     };
 });
@@ -93,7 +100,7 @@ app.directive('sortable', function() {
 
 function ViewCtrl($scope, $http) {
     "use strict";
-    $scope.content = {"data":[
+    $scope.content = [
         {"view_type": "radio set", "title": "Radio ABC"   , "data" : [{"name":"A"}, {"name":"B", "selected":true}, {"name":"C"}]},
         {"view_type": "textarea" , "title": "Big Text Area", "data" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pulvinar pretium felis. Vivamus nibh felis, condimentum sit amet laoreet luctus, posuere auctor lorem. Nullam malesuada."},
         {"view_type": "table" , "title": "table", "data" : [[1, 2, 3], [4, 5, 6], [7, 8, 9]
@@ -105,7 +112,7 @@ function ViewCtrl($scope, $http) {
             {"view_type": "text"     , "title": "Inner Notes 010"   , "data" : "dolor sit amet"}
         ]},
         {"view_type": "text"     , "title": "Notes in Plain text"   , "data" : "Lorem ipsum"},
-    ]};
+    ];
     $scope.stringify_content = function () {
         return JSON.stringify($scope.content, null, ' ');
     };
