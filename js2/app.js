@@ -52,7 +52,7 @@ app.directive('forMangle', function ($compile) {
         replace: true,
         link: linker,
         scope: {
-            content:'='
+            content:'=data'
         }
     };
 });
@@ -93,7 +93,7 @@ app.directive('sortable', function() {
 
 function ViewCtrl($scope, $http) {
     "use strict";
-    $scope.content = [
+    $scope.content = {"data":[
         {"view_type": "radio set", "title": "Radio ABC"   , "data" : [{"name":"A"}, {"name":"B", "selected":true}, {"name":"C"}]},
         {"view_type": "textarea" , "title": "Big Text Area", "data" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pulvinar pretium felis. Vivamus nibh felis, condimentum sit amet laoreet luctus, posuere auctor lorem. Nullam malesuada."},
         {"view_type": "table" , "title": "table", "data" : [[1, 2, 3], [4, 5, 6], [7, 8, 9]
@@ -105,11 +105,11 @@ function ViewCtrl($scope, $http) {
             {"view_type": "text"     , "title": "Inner Notes 010"   , "data" : "dolor sit amet"}
         ]},
         {"view_type": "text"     , "title": "Notes in Plain text"   , "data" : "Lorem ipsum"},
-    ];
+    ]};
     $scope.stringify_content = function () {
         return JSON.stringify($scope.content, null, ' ');
     };
     $scope.add_content = function () {
-        $scope.content.unshift( {"view_type": "radio set", "title": "Radio XYZ"   , "data" : [{"name":"X"}, {"name":"Y"}, {"name":"Z"}]});
+        $scope.content.data.unshift( {"view_type": "radio set", "title": "Radio XYZ"   , "data" : [{"name":"X"}, {"name":"Y"}, {"name":"Z"}]});
     };
 }
