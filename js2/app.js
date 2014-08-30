@@ -62,26 +62,18 @@ app.directive('sortable', function() {
         // A = attribute, E = Element, C = Class and M = HTML Comment
         restrict:'A',
         link: function(scope, element, attrs) {
+			var start;
             (function() {
-                var ctrl_scope;
-                var sort_array;
-                var save_scope = function(scope) {
-                    ctrl_scope = scope;
-					sort_array = scope.content.data;
-                };
                 var dragStart = function(e, ui) {
-                    ui.item.data('start', ui.item.index());
+                    start = ui.item.index();
                 };
                 var dragEnd = function(e, ui) {
-                    var start = ui.item.data('start'),
-                        end = ui.item.index();
-                    //alert(start + " " + end);
-                    sort_array.splice(end, 0, 
-                       sort_array.splice(start, 1)[0]);
+                    var end = ui.item.index();
+                    scope.content.data.splice(end, 0, 
+                       scope.content.data.splice(start, 1)[0]);
     
-                    ctrl_scope.$apply();
+                    scope.$apply();
                 };
-                save_scope(scope);
                 $(element).sortable({
                     start: dragStart,
                     update: dragEnd
