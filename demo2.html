@@ -23,7 +23,7 @@
 
 <div ng-controller="ViewCtrl">
     <div sortable id="container" class="left">
-        <div for-mangle ng-repeat="item in content" content="item"></div>
+        <div for-mangle ng-repeat="item in content.data" content="item"></div>
     </div>
     <div id="json_data_view" class="left"><pre ng-bind="stringify_content()"></pre></div>
     <div class="clear"></div>
