@@ -13,10 +13,11 @@
 
 var app = angular.module('myApp', []);
 
-app.directive('forMangle', function ($compile) {
+
+app.directive('formMangle', function ($compile) {
     var radioSetTemplate = '<div class="mangle-radioset"><h4 ng-bind="content.title"></h4><span ng-repeat="item in content.data" content="item" > <input type="radio" name="{{content.title}}" value="{{item.name}}" /> {{item.name}}</span></div></div>';
     var textareaTemplate = '<div class="mangle-textarea">{{content.data}}</div>';
-    var metaTemplate = '<ul><div  sortable >{{content.title}}<div for-mangle ng-repeat="item in content.data" content="item"></div></div></ul>';
+    var metaTemplate = '<ul><div  sortable >{{content.title}}<div form-mangle ng-repeat="item in content.data" content="item"></div></div></ul>';
     var tableTemplate = '<table><tbody  sortable ><tr ng-repeat="row in content.data" ><td ng-repeat="cell in row" >{{cell}}</td></tr></tbody></table>';
     var textTemplate = '<div class="mangle-text"><h2>{{content.title}}</h2>{{content.data}}</div>';
 
@@ -57,29 +58,28 @@ app.directive('forMangle', function ($compile) {
     };
 });
 
+// sortable directive uses JQueryUI to manage the sorting by drag&drop
 app.directive('sortable', function() {
     return {
         // A = attribute, E = Element, C = Class and M = HTML Comment
         restrict:'A',
         link: function(scope, element, attrs) {
 			var start;
-            (function() {
-                var dragStart = function(e, ui) {
-                    start = ui.item.index();
-                };
-                var dragEnd = function(e, ui) {
-                    var end = ui.item.index();
-                    scope.content.data.splice(end, 0, 
-                       scope.content.data.splice(start, 1)[0]);
-    
-                    scope.$apply();
-                };
-                $(element).sortable({
-                    start: dragStart,
-                    update: dragEnd
-                });
-                $(element).disableSelection();
-            })()
+			var dragStart = function(e, ui) {
+				start = ui.item.index();
+			};
+			var dragEnd = function(e, ui) {
+				var end = ui.item.index();
+				scope.content.data.splice(end, 0, 
+				   scope.content.data.splice(start, 1)[0]);
+
+				scope.$apply();
+			};
+			$(element).sortable({
+				start: dragStart,
+				update: dragEnd
+			});
+			$(element).disableSelection();
         }
     };
 });
