@@ -1,7 +1,7 @@
 formangular
 ===========
 
-metadata driving angular to make custom forms
+Data driving angular to make custom views (<a href="http://nmorse.github.io/formangular/" target="_new">demo</a>)
 
 Dynamic Templates is useful when you have data that drives the view.
 If you start with some data...
