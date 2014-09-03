@@ -25,6 +25,12 @@
     <div sortable id="container" class="left">
         <div form-mangle ng-repeat="item in content.data" content="item"></div>
     </div>
+
+    <div class="edit_controls">
+		<button class="preview" >preview</button><button class="edit" >edit</button><button class="slide" >slide</button>
+    </div>
+    
+    
     <div id="json_data_view" class="left"><pre ng-bind="stringify_content()"></pre></div>
     <div class="clear"></div>
     <button ng-click="add_content()">add content</button>
