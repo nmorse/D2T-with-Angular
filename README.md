@@ -1,4 +1,4 @@
-formangular
+D2T-with-Angular
 ===========
 
 Data driving angular to make custom views (<a href="http://nmorse.github.io/D2T-with-Angular/" target="_new">demo</a>)
@@ -10,3 +10,5 @@ If you start with some data...
 
 and a (view) template list...
 ```["basic_demo.html", "more_involved_demo.html"]``` 
+
+http://getbootstrap.com/javascript/#buttons-examples
