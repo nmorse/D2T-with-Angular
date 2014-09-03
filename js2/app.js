@@ -92,7 +92,7 @@ function ViewCtrl($scope, $http) {
         {"view_type": "textarea" , "title": "Big Text Area", "data" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pulvinar pretium felis. Vivamus nibh felis, condimentum sit amet laoreet luctus, posuere auctor lorem. Nullam malesuada."},
         {"view_type": "table" , "title": "table", "data" : [[1, 2, 3], [4, 5, 6], [7, 8, 9]
         ]},
-        {"view_type": "meta" , "title": "Meta", "data" : [
+        {"view_type": "meta" , "title": "Container", "data" : [
             {"view_type": "radio set", "title": "Radio CDF"   , "data" : [{"name":"C"}, {"name":"D", "selected":true}, {"name":"F"}]}, 
             {"view_type": "text"     , "title": "Inner Notes 000"   , "data" : "dolor sit amet"},
             {"view_type": "text"     , "title": "Inner Notes 001"   , "data" : "dolor sit amet"},
