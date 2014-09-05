@@ -1,30 +1,47 @@
 
 table {
   border-collapse: collapse;
+  width: 390px;
 }
 
-.ui-sortable>div {
+div.ddt {
   border: solid silver 1px;
-  margin: 1px;
-  padding: 1px;
+  margin: 2px;
+  padding: 2px;  
 }
 
-.ui-sortable>tr>td {
+tr>td {
   border: solid silver 1px;
-  padding: 1px 5px 1px 5px;
+  padding: 2px 5px 2px 5px;
+  margin: 2px;
 }
 
 div#json_data_view {
   color:silver;
 }
+
 div.left {
-  width: 300px;
+  width: 400px;
   float: left;
 }
 div.right {
-  width: 300px;
+  width: 400px;
   float: right;
 }
 .clear {
   clear:both;
+}
+
+.demo-footer {
+  border: solid blue 1px;
+  padding: 2px 5px 2px 5px;
+  margin: 2px;
+  font-style: italic;
+}
+
+.demo-section {
+  border: dashed orange 1px;
+  padding: 2px 5px 2px 5px;
+  margin: 2px;
+  font-style: bold;
 }
