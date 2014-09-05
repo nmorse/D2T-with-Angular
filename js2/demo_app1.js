@@ -7,7 +7,7 @@
 
 var app = angular.module('myApp', []);
 
-
+// data-driven-template
 app.directive('drivenTemplate', function ($compile) {
     var sectionTemplate = ['edit_mode: <input type="checkbox" ng-model="content.edit_mode" /><div class="demo-section"><h2>{{content.title}}</h2><p>{{content.narrative}}</p></div>',
 							'<div class="demo-section"><input ng-model="content.title"/><input ng-model="content.narrative"/></div>'];
