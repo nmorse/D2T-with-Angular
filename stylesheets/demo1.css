@@ -1,0 +1,30 @@
+
+table {
+  border-collapse: collapse;
+}
+
+.ui-sortable>div {
+  border: solid silver 1px;
+  margin: 1px;
+  padding: 1px;
+}
+
+.ui-sortable>tr>td {
+  border: solid silver 1px;
+  padding: 1px 5px 1px 5px;
+}
+
+div#json_data_view {
+  color:silver;
+}
+div.left {
+  width: 300px;
+  float: left;
+}
+div.right {
+  width: 300px;
+  float: right;
+}
+.clear {
+  clear:both;
+}

@@ -2,21 +2,32 @@
 <html ng-app="myApp">
 <head>
     <title>AngularJS Dynamic Template</title>
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.0/themes/smoothness/jquery-ui.css" />
+    <link rel="stylesheet" href="stylesheets/demo1.css" />
     
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular-resource.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular-sanitize.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.js"></script>
-    <script type="text/javascript" src="js2/app.js"></script>
+    <script type="text/javascript" src="js2/demo_app1.js"></script>
     
     <!-- link rel="stylesheet" href="css/layout.css" -->
     
 </head>
 <body>
 
-<div id="container" ng-controller="ViewCtrl">
-    <for-mangle ng-repeat="item in content" content="item"></for-mangle>
-</div>
+<div ng-controller="ViewCtrl">
+    <div class="left">
+        <div data-driven-template ng-repeat="item in content.data" content="item"></div>
+    </div>
 
+    <div class="edit_controls">
+		<button ng-click="add_content()">add content</button>
+    </div>
+        
+    <div id="json_data_view" class="left"><pre ng-bind="stringify_content()"></pre></div>
+    <div class="clear"></div>
+
+</div>
 </body>
 </html>
