@@ -13,11 +13,13 @@ var app = angular.module('myApp', []);
 // ToDo: load template dynamically as an ajax or socket or local-storage request.
 // 
 app.directive('drivenTemplate', function ($compile) {
-    var sectionTemplate = ['edit_mode: <input type="checkbox" ng-model="content.edit_mode" /><div class="demo-section"><h2>{{content.title}}</h2><p>{{content.narrative}}</p></div>',
-							'edit_mode: <input type="checkbox" ng-model="content.edit_mode" /><div class="demo-section"><input ng-model="content.title"/><input ng-model="content.narrative"/></div>'];
-    var tableTemplate = ['<table><tbody><tr ng-repeat="row in content.data" ><td ng-repeat="cell in row" >{{cell}}</td></tr></tbody></table>',''];
-    var tableWithNarrativeTemplate = ['<div class="demo-section"><table><tbody><tr ng-repeat="row in content.data" ><td ng-repeat="cell in row" >{{cell}}</td></tr></tbody></table><p>{{content.narrative}}</p></div>',''];
-    var footerTemplate = ['<div class="demo-footer"><p>{{content.narrative}}</p></div>',''];
+    var sectionTemplate = ['edit: <input type="checkbox" ng-model="content.edit_mode" /><div class="demo-section"><h2>{{content.title}}</h2><p>{{content.narrative}}</p></div>',
+							'edit: <input type="checkbox" ng-model="content.edit_mode" /><div class="demo-section"><input ng-model="content.title"/><br/><textarea ng-model="content.narrative"></textarea></div>'];
+    var tableTemplate = ['edit: <input type="checkbox" ng-model="content.edit_mode" /><table><tbody><tr ng-repeat="row in content.table_data.rows" ><td ng-repeat="cell in row.cols" >{{cell.name}}</td></tr></tbody></table>',
+                         'edit: <input type="checkbox" ng-model="content.edit_mode" /><table><tbody><tr ng-repeat="row in content.table_data.rows" ><td ng-repeat="cell in row.cols"><input ng-model="cell.name"/></td></tr></tbody></table>'];
+    var tableWithNarrativeTemplate = ['edit: <input type="checkbox" ng-model="content.edit_mode" /><div class="demo-section"><table><tbody><tr ng-repeat="row in content.table_data.rows" ><td ng-repeat="cell in row.cols" >{{cell.name}}</td></tr></tbody></table><p>{{content.narrative}}</p></div>',
+                                      'edit: <input type="checkbox" ng-model="content.edit_mode" /><div class="demo-section"><table><tbody><tr ng-repeat="row in content.table_data.rows" ><td ng-repeat="cell in row.cols" ><input ng-model="cell.name"/></td></tr></tbody></table><textarea ng-model="content.narrative"></textarea></div>'];
+    var footerTemplate = ['edit: <input type="checkbox" ng-model="content.edit_mode" /><div class="demo-footer"><p>{{content.narrative}}</p></div>','edit: <input type="checkbox" ng-model="content.edit_mode" /><div class="demo-footer"><textarea ng-model="content.narrative"></textarea></div>'];
 
     var getTemplate = function(viewType, edit_mode) {
         var template = '';
@@ -44,6 +46,12 @@ app.directive('drivenTemplate', function ($compile) {
         scope.$watch("content.edit_mode", function() {
           element.html(getTemplate(scope.content.view_template, scope.content.edit_mode));
           $compile(element.contents())(scope);
+        });
+        scope.$watch("content.data", function() {
+          //alert(JSON.stringify(scope.$parent.content.data, null, " "));
+          if (angular.isArray(scope.content.data)) {
+            //delete scope.content.data
+          }
         });
     };
 
@@ -75,23 +83,23 @@ function ViewCtrl($scope, $http) {
         "view_template": "table",
         "edit_mode": false,
         "title": "A First Table",
-        "data": [
-            [
-                "COS 171",
-                "Makeit or Breakit Data Structures",
-                3
-            ],
-            [
-                "COS 222",
-                "Really Boring Data Structures",
-                3
-            ],
-            [
-                "COS 234",
-                "Sequence Recognition in Data",
-                5
-            ]
-        ]
+        "table_data": {"rows":[
+            {"cols":[
+              {"name":"COS 171"},
+              {"name":"Makeit or Breakit Data Structures"},
+              {"name":3}
+            ]},
+            {"cols":[
+              {"name":"COS 222"},
+              {"name":"Really Boring Data Structures"},
+              {"name":3}
+            ]},
+            {"cols":[
+              {"name":"COS 234"},
+              {"name":"Sequence Recognition in Data"},
+              {"name":5}
+            ]}
+         ]}
     },
     {
         "view_template": "section",
@@ -103,23 +111,23 @@ function ViewCtrl($scope, $http) {
         "view_template": "table with narrative",
         "edit_mode": false,
         "title": "A First Table",
-        "data": [
-            [
-                "MAT 123",
-                "Four Topics in Math",
-                3
-            ],
-            [
-                "MAT 456",
-                "More Topics in Math",
-                6
-            ],
-            [
-                "MAT 789",
-                "Studies in Sequences",
-                9
-            ]
-        ],
+          "table_data": {"rows":[
+            {"cols":[
+              {"name":"COS 171"},
+              {"name":"Makeit or Breakit Data Structures"},
+              {"name":3}
+            ]},
+            {"cols":[
+              {"name":"COS 222"},
+              {"name":"Really Boring Data Structures"},
+              {"name":3}
+            ]},
+            {"cols":[
+              {"name":"COS 234"},
+              {"name":"Sequence Recognition in Data"},
+              {"name":5}
+            ]}
+         ]},
         "narrative": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pulvinar pretium felis. Vivamus nibh"
     },
     {
@@ -127,7 +135,7 @@ function ViewCtrl($scope, $http) {
         "edit_mode": false,
         "narrative": "Lorem ipsum footer ipsum dolor sit footer amet, consectetur adipiscing elit. Nunc pulvinar pretium felis. Vivamus nibh"
     }
-]};
+    ]};
     $scope.stringify_content = function () {
         return JSON.stringify($scope.content, null, ' ');
     };
