@@ -3,11 +3,9 @@
 <head>
     <title>AngularJS Dynamic Template</title>
     <link rel="stylesheet" href="stylesheets/demo1.css" />
-    
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular-resource.js"></script>
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular-sanitize.js"></script>
-    <script type="text/javascript" src="js2/demo_app1.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.2/angular-sanitize.js"></script>
+  <script src="js2/demo_app1.js"></script>
     
 </head>
 <body>
@@ -24,6 +22,50 @@
     <div id="json_data_view" class="left"><pre ng-bind="stringify_content()"></pre></div>
     <div class="clear"></div>
 
+  <!-- here are inline templates -->
+  <script type="text/ng-template" id="section_preview.html">
+    edit: <input type="checkbox" ng-model="content.edit_mode" />
+    <div class="demo-section"><h2>{{content.title}}</h2><p>{{content.narrative}}</p></div>
+  </script>
+  <script type="text/ng-template" id="section_edit.html">
+    edit: <input type="checkbox" ng-model="content.edit_mode" />
+    <div class="demo-section"><input ng-model="content.title"/><br/><textarea ng-model="content.narrative"></textarea></div>
+  </script>
+
+  <script type="text/ng-template" id="table_preview.html">
+    edit: <input type="checkbox" ng-model="content.edit_mode" />
+    <table><tbody>
+      <tr ng-repeat="row in content.table_data.rows" ><td ng-repeat="cell in row.cols" >{{cell.name}}</td></tr>
+    </tbody></table>
+  </script>
+  <script type="text/ng-template" id="table_edit.html">
+    edit: <input type="checkbox" ng-model="content.edit_mode" />
+    <table><tbody>
+      <tr ng-repeat="row in content.table_data.rows" ><td ng-repeat="cell in row.cols"><input ng-model="cell.name"/></td></tr>
+    </tbody></table>
+  </script>
+
+  <script type="text/ng-template" id="table_with_narrative_preview.html">
+    edit: <input type="checkbox" ng-model="content.edit_mode" />
+    <div class="demo-section"><table><tbody>
+      <tr ng-repeat="row in content.table_data.rows" ><td ng-repeat="cell in row.cols" >{{cell.name}}</td></tr>
+    </tbody></table><p>{{content.narrative}}</p></div>  </script>
+  <script type="text/ng-template" id="table_with_narrative_edit.html">
+    edit: <input type="checkbox" ng-model="content.edit_mode" />
+    <div class="demo-section"><table><tbody>
+      <tr ng-repeat="row in content.table_data.rows" ><td ng-repeat="cell in row.cols" ><input ng-model="cell.name"/></td></tr>
+    </tbody></table><textarea ng-model="content.narrative"></textarea></div>
+  </script>
+
+  <script type="text/ng-template" id="footer_preview.html">
+    edit: <input type="checkbox" ng-model="content.edit_mode" />
+    <div class="demo-footer"><p>{{content.narrative}}</p></div>  </script>
+  <script type="text/ng-template" id="footer_edit.html">
+    edit: <input type="checkbox" ng-model="content.edit_mode" />
+    <div class="demo-footer"><textarea ng-model="content.narrative"></textarea></div>
+  </script>
+
+  
 </div>
 </body>
 </html>

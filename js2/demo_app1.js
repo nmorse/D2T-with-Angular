@@ -12,46 +12,19 @@ var app = angular.module('myApp', []);
 // data-driven-template is a directive that dynamically links the local content (in the elements $scope) to a template.
 // ToDo: load template dynamically as an ajax or socket or local-storage request.
 // 
-app.directive('drivenTemplate', function ($compile) {
-    var sectionTemplate = ['edit: <input type="checkbox" ng-model="content.edit_mode" /><div class="demo-section"><h2>{{content.title}}</h2><p>{{content.narrative}}</p></div>',
-							'edit: <input type="checkbox" ng-model="content.edit_mode" /><div class="demo-section"><input ng-model="content.title"/><br/><textarea ng-model="content.narrative"></textarea></div>'];
-    var tableTemplate = ['edit: <input type="checkbox" ng-model="content.edit_mode" /><table><tbody><tr ng-repeat="row in content.table_data.rows" ><td ng-repeat="cell in row.cols" >{{cell.name}}</td></tr></tbody></table>',
-                         'edit: <input type="checkbox" ng-model="content.edit_mode" /><table><tbody><tr ng-repeat="row in content.table_data.rows" ><td ng-repeat="cell in row.cols"><input ng-model="cell.name"/></td></tr></tbody></table>'];
-    var tableWithNarrativeTemplate = ['edit: <input type="checkbox" ng-model="content.edit_mode" /><div class="demo-section"><table><tbody><tr ng-repeat="row in content.table_data.rows" ><td ng-repeat="cell in row.cols" >{{cell.name}}</td></tr></tbody></table><p>{{content.narrative}}</p></div>',
-                                      'edit: <input type="checkbox" ng-model="content.edit_mode" /><div class="demo-section"><table><tbody><tr ng-repeat="row in content.table_data.rows" ><td ng-repeat="cell in row.cols" ><input ng-model="cell.name"/></td></tr></tbody></table><textarea ng-model="content.narrative"></textarea></div>'];
-    var footerTemplate = ['edit: <input type="checkbox" ng-model="content.edit_mode" /><div class="demo-footer"><p>{{content.narrative}}</p></div>','edit: <input type="checkbox" ng-model="content.edit_mode" /><div class="demo-footer"><textarea ng-model="content.narrative"></textarea></div>'];
+app.directive('drivenTemplate', function ($compile, $templateCache) {
 
     var getTemplate = function(viewType, edit_mode) {
-        var template = '';
-        var template_index = edit_mode? 1: 0;
-        switch(viewType) {
-            case 'section':
-                template = sectionTemplate[template_index];
-                break;
-            case 'table':
-                template = tableTemplate[template_index];
-                break;
-            case 'table with narrative':
-                template = tableWithNarrativeTemplate[template_index];
-                break;
-            case 'footer':
-                template = footerTemplate[template_index];
-                break;
-                
-        }
-        return template;
+        var template_suffix = edit_mode? "_edit": "_preview";
+        var html = $templateCache.get(viewType + template_suffix + ".html");
+        return html;
     };
 
     var linker = function(scope, element, attrs) {
         scope.$watch("content.edit_mode", function() {
+          //this.templateUrl = '/section_preview.html';
           element.html(getTemplate(scope.content.view_template, scope.content.edit_mode));
           $compile(element.contents())(scope);
-        });
-        scope.$watch("content.data", function() {
-          //alert(JSON.stringify(scope.$parent.content.data, null, " "));
-          if (angular.isArray(scope.content.data)) {
-            //delete scope.content.data
-          }
         });
     };
 
@@ -108,7 +81,7 @@ function ViewCtrl($scope, $http) {
         "narrative": "Lorem ipsum blah blah blah dolor sit amet, consectetur adipiscing elit. Nunc pulvinar pretium felis. Vivamus nibh felis, condimentum sit amet laoreet luctus, posuere auctor lorem. Nullam malesuada."
     },
     {
-        "view_template": "table with narrative",
+        "view_template": "table_with_narrative",
         "edit_mode": false,
         "title": "A First Table",
           "table_data": {"rows":[
