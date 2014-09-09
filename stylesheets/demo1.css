@@ -3,6 +3,10 @@ table {
   width: 390px;
 }
 
+textarea {
+  width: 98%;
+}
+
 div.ddt {
   border: solid silver 1px;
   margin: 2px;
